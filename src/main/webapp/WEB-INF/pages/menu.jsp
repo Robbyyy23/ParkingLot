@@ -1,4 +1,9 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<style>
+    .list:hover {
+        border: 2px solid red; /* Adds a red border on hover */
+    }
+</style>
 <header>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -14,6 +19,9 @@
                         ${pageContext.request.requestURI.substring(pageContext.request.requestURI.lastIndexOf
                             ("/")) eq '/about.jsp' ? ' active' :''}
                         aria-current="page" href="${pageContext.request.contextPath}/about.jsp">About</a>
+                    </li>
+                    <li class="nav-item list">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/Cars">Cars</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
