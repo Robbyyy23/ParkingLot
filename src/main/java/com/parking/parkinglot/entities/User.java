@@ -2,50 +2,30 @@ package com.parking.parkinglot.entities;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "user")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
     private Long id;
+    private String email;
+    private String password;
 
-    private String username;
-
-    private Car car;
-
-    @Column(name = "username")
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public Long getId() {
+        return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
-    @GeneratedValue
-    public Long getId() {
-        return id;
-    }
-    private String email;
-    private String password;
+    @Basic
+    private String username;
 
-    private Collection<Car> cars = new ArrayList<>();
-
-    @OneToMany(mappedBy = "owner", orphanRemoval = true)
-    public Collection<Car> getCars() {
-        return cars;
-    }
-
-    public void setCars(Collection<Car> cars) {
-        this.cars = cars;
+    public String getUsername() {
+        return username;
     }
 
     public String getEmail() {
@@ -62,5 +42,20 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @OneToMany(mappedBy = "owner")
+    private Collection<Car> cars;
+
+    public Collection<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(Collection<Car> cars) {
+        this.cars = cars;
     }
 }
