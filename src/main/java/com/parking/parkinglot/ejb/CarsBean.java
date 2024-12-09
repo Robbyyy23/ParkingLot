@@ -35,7 +35,7 @@ public class CarsBean {
                 .map(car -> new CarDto(
                         car.getId(),
                         car.getLicensePlate(),
-                        car.getOwner().getUsername(), // Ensure owner is not null
+                        car.getOwner().getUsername(),
                         car.getParkingSpot()))
                 .collect(Collectors.toList());
     }
