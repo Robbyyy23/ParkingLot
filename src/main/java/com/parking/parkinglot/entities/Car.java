@@ -10,6 +10,8 @@ public class Car {
     private Long id;
     private String licensePlate;
     private String parkingSpot;
+    private User owner;
+    private CarPhoto photo;
 
     public String getLicensePlate() {
         return licensePlate;
@@ -36,13 +38,21 @@ public class Car {
     }
 
     @ManyToOne
-    private User owner;
-
     public User getOwner() {
         return owner;
     }
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+
+    @OneToOne(mappedBy = "car" , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public CarPhoto getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(CarPhoto photo) {
+        this.photo = photo;
     }
 }
