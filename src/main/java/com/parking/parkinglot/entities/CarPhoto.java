@@ -1,20 +1,34 @@
 package com.parking.parkinglot.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class CarPhoto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
     private Long id;
+
+    @Basic
+    @Column(nullable = false, length = 255)
+    @NotBlank(message = "Filename is mandatory")
+    @Size(max = 255, message = "Filename cannot exceed 255 characters")
     String filename;
+
+    @Basic
+    @Column(nullable = false, length = 50)
+    @NotBlank(message = "File type is mandatory")
+    @Size(max = 50, message = "File type cannot exceed 50 characters")
     String fileType;
+    @Lob
+    @Column(nullable = false)
+    @NotNull(message = "File content is mandatory")
     byte[] fileContent;
     Car car;
 
-    @Id
-    @GeneratedValue
     public Long getId() {
         return id;
     }

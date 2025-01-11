@@ -1,6 +1,8 @@
 package com.parking.parkinglot.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Car {
@@ -8,7 +10,17 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @Basic
+    @Column(unique = true, nullable = false, length = 100)
+    @NotBlank(message = "License plate is mandatory")
+    @Size(max = 100, message = "License plate cannot exceed 100 characters")
     private String licensePlate;
+
+    @Basic
+    @Column(unique = true,nullable = false, length = 100)
+    @NotBlank(message = "Parking spot is mandatory")
+    @Size(max = 100, message = "Parking spot name cannot exceed 100 characters")
     private String parkingSpot;
     private User owner;
     private CarPhoto photo;

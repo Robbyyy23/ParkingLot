@@ -12,7 +12,7 @@
         <label for="username" class="sr-only">Username</label>
         <input type="text" id="username" name="j_username" class="form-control" placeholder="Username" required autofocus>
         <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" name="j_password" class="form-control" placeholder="password" required>
+        <input type="password" id="password" name="j_password" class="form-control" placeholder="password">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
     </form>
 </t:pageTemplate>

@@ -1,17 +1,29 @@
 package com.parking.parkinglot.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class UserGroup {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
     private Long id;
+
+    @Basic
+    @Column(nullable = false, length = 100)
+    @NotBlank(message = "Username is mandatory")
+    @Size(max = 100, message = "Username cannot exceed 100 characters")
     private String username;
+
+    @Basic
+    @Column(nullable = false, length = 50)
+    @NotBlank(message = "User group is mandatory")
+    @Size(max = 50, message = "User group name cannot exceed 50 characters")
     private String userGroup;
 
-    @Id
-    @GeneratedValue
+
     public Long getId() {
         return id;
     }
